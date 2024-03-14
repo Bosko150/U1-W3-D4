@@ -9,7 +9,7 @@ const generateCells = function () {
     cellDiv.className = "cellNum";
 
     const cellH3 = document.createElement("h3");
-    cellH3.id = `num${i}`;
+    cellH3.className = `num${i}`;
     cellH3.innerText = i;
     cellDiv.appendChild(cellH3);
     table.appendChild(cellDiv);
@@ -32,6 +32,28 @@ btnDiv.appendChild(numBox);
 btn.addEventListener("click", function () {
   let randomNumber = Math.floor(Math.random() * 76) + 1;
   numBox.innerText = randomNumber;
-  const cell = document.getElementById(`num${randomNumber}`);
-  cell.parentNode.classList.add("selectedNum");
+  const cell = document.querySelectorAll(`.num${randomNumber}`);
+  for (let i = 0; i < cell.length; i++) {
+    cell[i].parentNode.classList.add("selectedNum");
+  }
 });
+
+//creo la tabella da 24 celle per il giocatore
+
+const genPlayerTable = function () {
+  const table = document.createElement("div");
+  table.className = "playerTable";
+  document.body.appendChild(table);
+  for (let i = 1; i <= 24; i++) {
+    let randomNumber = Math.floor(Math.random() * 76) + 1;
+    const cellDiv = document.createElement("div");
+    cellDiv.className = "cellNum";
+
+    const cellH3 = document.createElement("h3");
+    cellH3.className = `num${randomNumber}`;
+    cellH3.innerText = randomNumber;
+    cellDiv.appendChild(cellH3);
+    table.appendChild(cellDiv);
+  }
+};
+genPlayerTable();
